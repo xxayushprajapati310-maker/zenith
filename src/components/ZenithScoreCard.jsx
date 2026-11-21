@@ -12,10 +12,11 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
   const getStatus = (score) => {
     if (score >= 85) {
       return {
-        label: 'Zenith Mastery (Optimal Equilibrium)',
-        desc: 'Exceptional neuro-chemical harmony. High physical & mental balance with controlled screen engagement.',
+        label: 'Zenith Equilibrium (Optimal)',
+        desc: 'Exceptional neuro-chemical balance. Vital sleep, focused deep work, and natural movement are harmonized.',
         color: 'from-emerald-500 to-teal-400',
         badge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+        emoji: '🌟',
         icon: Award
       };
     }
@@ -23,8 +24,9 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
       return {
         label: 'Healthy Alignment',
         desc: 'Productive and balanced rhythm. A short outdoor walk or water break will elevate you into optimal flow.',
-        color: 'from-cyan-500 to-indigo-500',
-        badge: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+        color: 'from-[#C4A484] to-[#F5EFE6]',
+        badge: 'bg-[#C4A484]/15 text-[#F5EFE6] border-[#C4A484]/30',
+        emoji: '🌿',
         icon: TrendingUp
       };
     }
@@ -34,14 +36,16 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
         desc: 'Passive digital consumption is outpacing physical movement. Complete a focus sprint or step outside.',
         color: 'from-amber-500 to-orange-400',
         badge: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+        emoji: '⚡',
         icon: Activity
       };
     }
     return {
       label: 'Digital Overload & Dopamine Fatigue',
       desc: 'Screen exposure significantly exceeds physical & sleep recovery thresholds. Use "AI Rescue My Day" below.',
-      color: 'from-rose-500 to-red-600',
-      badge: 'bg-rose-500/15 text-rose-300 border-rose-500/30',
+      color: 'from-red-500 to-rose-600',
+      badge: 'bg-red-500/15 text-red-300 border-red-500/30',
+      emoji: '⚠️',
       icon: ShieldAlert
     };
   };
@@ -49,7 +53,6 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
   const status = getStatus(zenithScore);
   const StatusIcon = status.icon;
 
-  // Calculation metrics
   const screenExcess = screen && screen.currentMinutes > screen.targetMinutes 
     ? screen.currentMinutes - screen.targetMinutes 
     : 0;
@@ -69,7 +72,7 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
                 cx="50"
                 cy="50"
                 r="42"
-                className="stroke-slate-800"
+                className="stroke-slate-900"
                 strokeWidth="8"
                 fill="transparent"
               />
@@ -83,7 +86,15 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
                 strokeDashoffset={264 - (264 * zenithScore) / 100}
                 strokeLinecap="round"
                 fill="transparent"
-                className={`transition-all duration-1000 ease-out text-${zenithScore >= 80 ? 'emerald' : zenithScore >= 60 ? 'cyan' : zenithScore >= 40 ? 'amber' : 'rose'}-500`}
+                className={`transition-all duration-1000 ease-out ${
+                  zenithScore >= 80 
+                    ? 'text-emerald-400' 
+                    : zenithScore >= 60 
+                    ? 'text-[#C4A484]' 
+                    : zenithScore >= 40 
+                    ? 'text-amber-400' 
+                    : 'text-red-400'
+                }`}
               />
             </svg>
             <div className="absolute flex flex-col items-center justify-center">
@@ -98,7 +109,7 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
 
           <div className="mt-3 flex items-center space-x-2">
             <span className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${status.badge}`}>
-              <StatusIcon className="w-3.5 h-3.5" />
+              <span className="text-sm animate-emoji-bounce">{status.emoji}</span>
               <span>{status.label}</span>
             </span>
           </div>
@@ -109,8 +120,8 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
           <div>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <Sparkles className="w-4 h-4 text-indigo-400" />
-                <h3 className="text-base font-semibold text-white">
+                <span className="text-lg animate-emoji-float">⚖️</span>
+                <h3 className="text-base font-bold text-white">
                   Zenith Live Life-Balance Index
                 </h3>
               </div>
@@ -127,16 +138,19 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
           {/* Quick Pillar Breakdown Bars */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
             {/* Deep Work */}
-            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80">
+            <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
               <div className="flex items-center justify-between text-[11px] text-slate-400">
-                <span>Deep Work</span>
-                <span className="font-mono text-indigo-300 font-medium">
+                <span className="flex items-center space-x-1">
+                  <span>📚</span>
+                  <span>Deep Work</span>
+                </span>
+                <span className="font-mono text-blue-400 font-medium">
                   {Math.round((study?.currentMinutes || 0) / 60 * 10) / 10}h
                 </span>
               </div>
               <div className="mt-1.5 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-indigo-500 rounded-full transition-all duration-500"
+                  className="h-full bg-blue-500 rounded-full transition-all duration-500"
                   style={{ width: `${Math.min(100, ((study?.currentMinutes || 0) / (study?.targetMinutes || 180)) * 100)}%` }}
                 />
               </div>
@@ -146,16 +160,19 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
             </div>
 
             {/* Sleep */}
-            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80">
+            <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
               <div className="flex items-center justify-between text-[11px] text-slate-400">
-                <span>Sleep</span>
-                <span className="font-mono text-purple-300 font-medium">
+                <span className="flex items-center space-x-1">
+                  <span>🌙</span>
+                  <span>Sleep</span>
+                </span>
+                <span className="font-mono text-[#C4A484] font-medium">
                   {Math.round((sleep?.currentMinutes || 0) / 60 * 10) / 10}h
                 </span>
               </div>
               <div className="mt-1.5 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-purple-500 rounded-full transition-all duration-500"
+                  className="h-full bg-[#C4A484] rounded-full transition-all duration-500"
                   style={{ width: `${Math.min(100, ((sleep?.currentMinutes || 0) / (sleep?.targetMinutes || 480)) * 100)}%` }}
                 />
               </div>
@@ -164,11 +181,14 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
               </span>
             </div>
 
-            {/* Physical / Outdoor */}
-            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80">
+            {/* Movement */}
+            <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
               <div className="flex items-center justify-between text-[11px] text-slate-400">
-                <span>Movement</span>
-                <span className="font-mono text-emerald-300 font-medium">
+                <span className="flex items-center space-x-1">
+                  <span>⚡</span>
+                  <span>Movement</span>
+                </span>
+                <span className="font-mono text-emerald-400 font-medium">
                   {(exercise?.currentMinutes || 0) + (outdoor?.currentMinutes || 0)}m
                 </span>
               </div>
@@ -184,20 +204,23 @@ export default function ZenithScoreCard({ zenithScore, activities }) {
             </div>
 
             {/* Screen Exposure */}
-            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80">
+            <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
               <div className="flex items-center justify-between text-[11px] text-slate-400">
-                <span>Screen Load</span>
-                <span className={`font-mono font-medium ${screenExcess > 0 ? 'text-rose-400' : 'text-slate-300'}`}>
+                <span className="flex items-center space-x-1">
+                  <span>💻</span>
+                  <span>Screen Load</span>
+                </span>
+                <span className={`font-mono font-medium ${screenExcess > 0 ? 'text-red-400' : 'text-slate-300'}`}>
                   {Math.round((screen?.currentMinutes || 0) / 60 * 10) / 10}h
                 </span>
               </div>
               <div className="mt-1.5 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                 <div 
-                  className={`h-full rounded-full transition-all duration-500 ${screenExcess > 0 ? 'bg-rose-500' : 'bg-slate-400'}`}
+                  className={`h-full rounded-full transition-all duration-500 ${screenExcess > 0 ? 'bg-red-500' : 'bg-slate-400'}`}
                   style={{ width: `${Math.min(100, ((screen?.currentMinutes || 0) / (screen?.targetMinutes || 180)) * 100)}%` }}
                 />
               </div>
-              <span className={`text-[10px] mt-1 block font-mono ${screenExcess > 0 ? 'text-rose-400' : 'text-slate-500'}`}>
+              <span className={`text-[10px] mt-1 block font-mono ${screenExcess > 0 ? 'text-red-400' : 'text-slate-500'}`}>
                 {screenExcess > 0 ? `+${screenExcess}m over target` : 'Within safe limit'}
               </span>
             </div>

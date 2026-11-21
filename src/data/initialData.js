@@ -1,47 +1,67 @@
 export const INITIAL_ACTIVITIES = [
   {
-    id: 'study',
-    name: 'Study & Deep Work',
-    category: 'positive',
-    iconName: 'BookOpen',
-    color: '#6366F1', // Indigo
-    accentClass: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/30',
-    currentMinutes: 120,
-    targetMinutes: 180,
-    isRunning: false,
-    timerSeconds: 0
-  },
-  {
     id: 'sleep',
-    name: 'Sleep & Recovery',
+    order: 1,
+    name: 'Sleep & Circadian Recovery',
     category: 'positive',
+    emoji: '🌙',
+    animationClass: 'animate-emoji-float',
     iconName: 'Moon',
-    color: '#8B5CF6', // Violet
-    accentClass: 'text-purple-400 bg-purple-500/10 border-purple-500/30',
-    currentMinutes: 420, // 7 hours
-    targetMinutes: 480, // 8 hours
+    color: '#C4A484', // Warm Pale Brown
+    startTime: '23:00',
+    endTime: '07:00',
+    formattedInterval: '11:00 PM - 07:00 AM',
+    currentMinutes: 420, // 7h logged
+    targetMinutes: 480, // 8h
     isRunning: false,
     timerSeconds: 0
   },
   {
     id: 'exercise',
-    name: 'Exercise & Fitness',
+    order: 2,
+    name: 'Morning Fitness & Movement',
     category: 'positive',
+    emoji: '⚡',
+    animationClass: 'animate-emoji-bounce',
     iconName: 'Flame',
-    color: '#10B981', // Emerald
-    accentClass: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+    color: '#10B981', // RGB Emerald
+    startTime: '07:00',
+    endTime: '08:00',
+    formattedInterval: '07:00 AM - 08:00 AM',
     currentMinutes: 45,
     targetMinutes: 60,
     isRunning: false,
     timerSeconds: 0
   },
   {
-    id: 'outdoor',
-    name: 'Outdoor Games & Sun',
+    id: 'study',
+    order: 3,
+    name: 'Deep Work & Study Sprint',
     category: 'positive',
+    emoji: '📚',
+    animationClass: 'animate-emoji-wiggle',
+    iconName: 'BookOpen',
+    color: '#3B82F6', // RGB Blue
+    startTime: '09:00',
+    endTime: '12:00',
+    formattedInterval: '09:00 AM - 12:00 PM',
+    currentMinutes: 120,
+    targetMinutes: 180,
+    isRunning: false,
+    timerSeconds: 0
+  },
+  {
+    id: 'outdoor',
+    order: 4,
+    name: 'Outdoor Sports & Sunlight',
+    category: 'positive',
+    emoji: '🌿',
+    animationClass: 'animate-emoji-float',
     iconName: 'Compass',
-    color: '#06B6D4', // Cyan
-    accentClass: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
+    color: '#06B6D4', // RGB Cyan
+    startTime: '16:30',
+    endTime: '17:30',
+    formattedInterval: '04:30 PM - 05:30 PM',
     currentMinutes: 30,
     targetMinutes: 60,
     isRunning: false,
@@ -49,11 +69,16 @@ export const INITIAL_ACTIVITIES = [
   },
   {
     id: 'indoor',
-    name: 'Indoor Games',
+    order: 5,
+    name: 'Indoor Games & Social Play',
     category: 'neutral',
+    emoji: '🎲',
+    animationClass: 'animate-emoji-bounce',
     iconName: 'Dice5',
-    color: '#F59E0B', // Amber
-    accentClass: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+    color: '#F59E0B', // RGB Amber / Pale Ochre
+    startTime: '18:00',
+    endTime: '19:00',
+    formattedInterval: '06:00 PM - 07:00 PM',
     currentMinutes: 40,
     targetMinutes: 60,
     isRunning: false,
@@ -61,13 +86,18 @@ export const INITIAL_ACTIVITIES = [
   },
   {
     id: 'screen',
+    order: 6,
     name: 'General Screen Time',
     category: 'consumption',
+    emoji: '💻',
+    animationClass: 'animate-emoji-pulse',
     iconName: 'Monitor',
-    color: '#F43F5E', // Rose
-    accentClass: 'text-rose-400 bg-rose-500/10 border-rose-500/30',
-    currentMinutes: 210, // 3.5 hrs
-    targetMinutes: 180, // Max recommended limit
+    color: '#EF4444', // RGB Crimson
+    startTime: '19:30',
+    endTime: '22:30',
+    formattedInterval: '07:30 PM - 10:30 PM',
+    currentMinutes: 210,
+    targetMinutes: 180,
     isRunning: false,
     timerSeconds: 0
   }
@@ -78,6 +108,7 @@ export const INITIAL_APPS = [
     id: 'app-instagram',
     name: 'Instagram',
     category: 'Social Media',
+    emoji: '📸',
     iconName: 'Camera',
     dailyLimitMinutes: 30,
     usedMinutes: 25,
@@ -89,6 +120,7 @@ export const INITIAL_APPS = [
     id: 'app-youtube',
     name: 'YouTube',
     category: 'Streaming & Video',
+    emoji: '▶️',
     iconName: 'Video',
     dailyLimitMinutes: 45,
     usedMinutes: 40,
@@ -100,6 +132,7 @@ export const INITIAL_APPS = [
     id: 'app-gaming',
     name: 'Steam & Gaming',
     category: 'Entertainment',
+    emoji: '🎮',
     iconName: 'Gamepad2',
     dailyLimitMinutes: 60,
     usedMinutes: 55,
@@ -111,6 +144,7 @@ export const INITIAL_APPS = [
     id: 'app-vscode',
     name: 'VS Code & Dev Tools',
     category: 'Productivity',
+    emoji: '💻',
     iconName: 'Code2',
     dailyLimitMinutes: 240,
     usedMinutes: 160,
@@ -155,11 +189,48 @@ export const INITIAL_GOALS = [
   }
 ];
 
+export const INITIAL_HISTORY_ARCHIVES = [
+  {
+    id: 'archive-1',
+    date: '2026-11-21',
+    dayName: 'Yesterday',
+    zenithScore: 88,
+    totalLoggedMinutes: 890,
+    completedGoals: 4,
+    totalGoals: 4,
+    activities: [
+      { name: 'Sleep & Circadian Recovery', loggedMinutes: 480, targetMinutes: 480, emoji: '🌙' },
+      { name: 'Morning Fitness & Movement', loggedMinutes: 60, targetMinutes: 60, emoji: '⚡' },
+      { name: 'Deep Work & Study Sprint', loggedMinutes: 180, targetMinutes: 180, emoji: '📚' },
+      { name: 'Outdoor Sports & Sunlight', loggedMinutes: 60, targetMinutes: 60, emoji: '🌿' },
+      { name: 'Indoor Games & Social Play', loggedMinutes: 30, targetMinutes: 60, emoji: '🎲' },
+      { name: 'General Screen Time', loggedMinutes: 140, targetMinutes: 180, emoji: '💻' }
+    ]
+  },
+  {
+    id: 'archive-2',
+    date: '2026-11-20',
+    dayName: '2 Days Ago',
+    zenithScore: 74,
+    totalLoggedMinutes: 760,
+    completedGoals: 3,
+    totalGoals: 4,
+    activities: [
+      { name: 'Sleep & Circadian Recovery', loggedMinutes: 420, targetMinutes: 480, emoji: '🌙' },
+      { name: 'Morning Fitness & Movement', loggedMinutes: 30, targetMinutes: 60, emoji: '⚡' },
+      { name: 'Deep Work & Study Sprint', loggedMinutes: 150, targetMinutes: 180, emoji: '📚' },
+      { name: 'Outdoor Sports & Sunlight', loggedMinutes: 45, targetMinutes: 60, emoji: '🌿' },
+      { name: 'Indoor Games & Social Play', loggedMinutes: 50, targetMinutes: 60, emoji: '🎲' },
+      { name: 'General Screen Time', loggedMinutes: 195, targetMinutes: 180, emoji: '💻' }
+    ]
+  }
+];
+
 export const DEMO_PRESET_BALANCED = {
   activities: [
-    { id: 'study', currentMinutes: 210, targetMinutes: 180 },
     { id: 'sleep', currentMinutes: 480, targetMinutes: 480 },
     { id: 'exercise', currentMinutes: 60, targetMinutes: 60 },
+    { id: 'study', currentMinutes: 210, targetMinutes: 180 },
     { id: 'outdoor', currentMinutes: 75, targetMinutes: 60 },
     { id: 'indoor', currentMinutes: 30, targetMinutes: 60 },
     { id: 'screen', currentMinutes: 150, targetMinutes: 180 }
@@ -180,9 +251,9 @@ export const DEMO_PRESET_BALANCED = {
 
 export const DEMO_PRESET_OVERLOADED = {
   activities: [
-    { id: 'study', currentMinutes: 45, targetMinutes: 180 },
     { id: 'sleep', currentMinutes: 300, targetMinutes: 480 },
     { id: 'exercise', currentMinutes: 0, targetMinutes: 60 },
+    { id: 'study', currentMinutes: 45, targetMinutes: 180 },
     { id: 'outdoor', currentMinutes: 0, targetMinutes: 60 },
     { id: 'indoor', currentMinutes: 140, targetMinutes: 60 },
     { id: 'screen', currentMinutes: 420, targetMinutes: 180 }

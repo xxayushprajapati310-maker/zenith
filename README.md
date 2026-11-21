@@ -1,80 +1,62 @@
 # Zenith — AI-Powered Digital Wellbeing & Life-Balance Dashboard
 
-> **Autonomous Life-Balance OS & Cognitive Equilibrium Dashboard** built with React, Vite, Tailwind CSS, and Lucide Icons. Designed to harmonize deep work, physical vitality, sleep architecture, and screen discipline with intelligent AI intervention.
+> **Autonomous Life-Balance OS & Cognitive Equilibrium Dashboard** built with React, Vite, Tailwind CSS, Lucide Icons, and Web Audio API synthesizer. Designed to harmonize deep work, physical vitality, sleep architecture, and screen discipline with strict 24-hour daily allotment governance.
 
 ---
 
 ## ✨ Features Overview
 
-### 1. Life Balance Activity Tracker & Live Timers
-- **Six Core Vitality Pillars**:
-  - 📖 **Study & Deep Work** (Indigo)
-  - 🌙 **Sleep & Recovery** (Violet)
-  - 🔥 **Exercise & Fitness** (Emerald)
-  - 🧭 **Outdoor Games & Sun Exposure** (Cyan)
-  - 🎲 **Indoor Games** (Amber)
-  - 📱 **Screen Time Load** (Rose)
-- **Live Timers & Quick Add**: Support for live start/pause session timers with second-level precision, plus quick increments (`+15m`, `+30m`, `+1h`) and inline editable daily targets.
-- **Live Zenith Balance Score (0–100)**: Dynamically calculated based on positive physical & mental habits vs. digital screen consumption.
+### 1. Life Balance Activity Tracker & Single-Active Timers
+- **Strict Single Active Mode**: Only one activity tracker runs at a time. Starting any activity automatically pauses all other running trackers.
+- **Custom Time Interval Allotment**: Each activity features an editable scheduled interval (e.g. `09:00 AM - 12:00 PM`). An active slot indicator dynamically highlights when you are currently in your scheduled window.
+- **24-Hour Day Allocation Limit**: Strict restriction ensuring the sum of all daily allotted target times never exceeds 24 hours (1,440 minutes). Features a live real-time budget meter displaying allocated vs unallocated buffer time.
+- **Custom Ordered Sequence**: Reorder the sequence of your day at will using the Up/Down controls or the **"Sort by Schedule"** button.
+- **Add & Edit Activities**: Full control to add new activities or edit existing ones (name, category, scheduled interval, target duration, color, and animated emoji).
+- **Live Zenith Balance Score (0–100)**: Dynamically calculated based on positive habits vs. digital screen overload.
 
-### 2. Custom App Vault & AI Time Limiter
+### 2. 12:00 AM Midnight Rollover & Bottom-Right Archives
+- **Automatic Midnight Archiving**: Every night at 12:00 AM, Zenith autonomously captures the day's activity logs, scores, and goal completions, archiving them into permanent history in `localStorage`.
+- **Fresh Daily Reset**: Logged minutes and app session counters reset cleanly for the new day while preserving all scheduled targets and sequences.
+- **Bottom-Right Corner Access**: A persistent floating button in the bottom-right corner provides immediate one-click access to the **Activity Archives Drawer**, where past days' records, timeline stats, and scores are reviewed.
+- **Simulate Midnight (12 AM) Button**: Test the archive and rollover process at any moment with a single click.
+
+### 3. Custom App Vault & AI Time Limiter
 - **Default App Vault**: Preloaded with Instagram, YouTube, Steam/Gaming, and VS Code.
-- **Custom App Management**: Add any app, category, and custom minute limit via the `+ Add Custom App` modal.
-- **Instant Demo Controls**: Active session timer controls plus a `Simulate -5m` button to test daily limits and locking behavior during live demos.
-- **AI Vault Negotiator Modal**: When an app hits 0 minutes remaining, it enters **LOCKED** state. The user can:
-  - Submit a stated justification evaluated by the AI Guardian.
-  - Complete an **Intentional Mindfulness Challenge** (conscious affirmation test) to override mindless dopamine loops.
-  - Receive an approved emergency `+10 min` extension with actionable cognitive coaching.
+- **Add Custom Apps**: Configure custom app limits, categories, and timers.
+- **Instant Demo Controls**: Active session timer controls plus a `Simulate -5m` button to quickly demo app depletion.
+- **AI Negotiator Modal**: When an app hits 0 minutes remaining, it locks automatically. Users can state an emergency reason or complete a **Mindful Reflex Challenge** to request an AI-evaluated `+10 min` extension.
 
-### 3. Daily Goals & "AI Rescue My Day"
+### 4. Daily Goals & "AI Rescue My Day"
 - **Priority-Tagged Daily Goals**: Track high-impact objectives with priority badges (`High`, `Medium`, `Low`), estimated durations, and one-click completion.
 - **AI Rescue My Day Engine**:
-  - Assesses completed vs. pending tasks alongside today's sleep, exercise, and screen metrics.
+  - Assesses completed vs. pending tasks alongside today's logs.
   - Computes a **Burnout & Focus Risk Rating** (`Low`, `Moderate`, `High`, `Critical`).
-  - Synthesizes a **Rest-of-Day Chronological Time-Blocked Schedule** (focus sprints, nervous system resets, optic recovery, digital sunset).
+  - Synthesizes a **Rest-of-Day Chronological Time-Blocked Schedule**.
   - Delivers targeted neuroscience & circadian hygiene behavioral tips.
 
-### 4. Prompt Architecture & Demo Readiness
-- **Load Demo Data**: Instant 1-click presets in the header (`🌟 Balanced High Achiever` vs `⚠️ Digital Overload Alert`) for effortless demonstrations.
-- **Prompt Architecture Modal**: Full inspection of the system prompts, evaluation rubrics, guardrails, and structured JSON schemas utilized by the AI Coach and AI Negotiator.
-- **Settings & API Configuration**:
-  - Works 100% offline out-of-the-box using the built-in deterministic cognitive neuro-behavioral engine.
-  - Optional Google Gemini API key configuration to upgrade to live multimodal LLM inference.
-  - Full JSON data backup export and local storage reset.
-
----
-
-## 🚀 Tech Stack & Design
-
-- **Framework**: React 18 + Vite 6
-- **Styling**: Tailwind CSS (Custom Dark Slate & Indigo Glassmorphism UI)
-- **Icons**: Lucide React
-- **Persistence**: Browser `localStorage` (Local-first, 100% private)
-- **Repository Footprint**: Minimal zero-bloat architecture (< 2 MB repository size, no heavy media or video assets)
+### 5. Sound Effects & Modern Aesthetics
+- **Synthesized Web Audio**: Crisp chime on timer start, soft tone on pause, tactile clicks, and alert sounds with zero external media files.
+- **Sound Toggle**: Easy Mute/Unmute audio control in the top navigation bar.
+- **Refined Color Palette**: High-contrast Jet Black (`#05070B`), Crisp White, Pale Brown (`#C4A484`), Soft Cream (`#F5EFE6`), with RGB Emerald, Blue, Amber, and Crimson accents (minimizing purple).
+- **Animated Emojis**: Micro-animations including bounce, float, wiggle, and pulse for all activity icons.
 
 ---
 
 ## 🛠️ Quick Start
 
-### 1. Install Dependencies
-```bash
+```powershell
+# 1. Install dependencies
 npm install
-```
 
-### 2. Run Local Development Server
-```bash
+# 2. Run local development server
 npm run dev
-```
-Open your browser at `http://localhost:3000`.
 
-### 3. Build for Production
-```bash
+# 3. Build optimized production bundle
 npm run build
 ```
-Generates an optimized, lightning-fast bundle in `dist/`.
 
 ---
 
 ## 🔒 Privacy & Architecture
 
-All activities, app usage counters, and goal data remain strictly on your local machine using the browser's `localStorage`. No personal telemetry or usage data is transmitted externally.
+All activities, historical archives, and configurations remain strictly on your local machine using the browser's `localStorage`. Minimal zero-bloat architecture under **300 KB** source code.
